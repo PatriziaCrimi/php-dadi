@@ -128,9 +128,6 @@ h1::after {
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
-#updated-list h3 {
-  text-transform: uppercase;
-}
 
 /* ------------------- MEDIA QUERY ------------------- */
 

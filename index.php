@@ -2,7 +2,16 @@
   // Variables and constants initialization
   $title = 'PHP Dice Game';
   $subtitle = 'Roll of the dice - Simulator';
+  $player_name = 'Patrizia'; // any name (string)
+  $number_of_games = 5; // any integer
+  $min = 1;
+  $max = 6;
+  $player_score = 0;
+  $pc_score = 0;
+  $message = '';
+  $counter = 0;
 ?>
+
 <!-- ............................. HTML ............................. -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -33,7 +42,19 @@
           <div id="data-info">
             <h3>Data Information</h3>
             <p>
-              DATA HERE
+              Player one is
+              <?php
+                echo $player_name . '.';
+              ?>
+            </p>
+            <p>
+              The second player is the computer.
+            </p>
+            <p>
+              You are going to play
+              <?php
+                echo $number_of_games . ' games.';
+              ?>
             </p>
           </div>
         </div>
@@ -41,14 +62,73 @@
           <!-- Results -->
           <div id="results">
             <h3>Results</h3>
-            <p class="message">
-              RESULTS HERE
-            </p>
+            <div class="message">
+              <?php
+                // ************* Dice Game *************
+                for ($i=0; $i < $number_of_games; $i++) {
+                  // Dice roll
+                  $player_score = round(rand($min, $max), 0);
+                  $pc_score = round(rand($min, $max), 0);
+                  $match_number = $i + 1;
+                  if($player_score > $pc_score) {
+                    // Player wins
+                    $message = 'You won! You scored ' . $player_score . ' and the computer scored ' . $pc_score . '.';
+                    $counter += 1;
+              ?>
+              <p>
+                <?php
+                  echo 'Match number ' . $match_number;
+                ?>
+              </p>
+              <p>
+                <?php
+                  echo $message;
+                ?>
+              </p>
+              <?php
+                  } else if($player_score < $pc_score) {
+                    // Computer wins
+                    $message = 'You lose! You scored ' . $player_score . ' and the computer scored ' . $pc_score . '.';
+              ?>
+              <p>
+                <?php
+                  echo 'Match number ' . $match_number;
+                ?>
+              </p>
+              <p>
+                <?php
+                  echo $message;
+                ?>
+              </p>
+              <?php
+                  } else {
+                    // Tie (pareggio)
+                    $message = 'There are no winners. You both scored ' + $player_score + '!';
+              ?>
+              <p>
+                <?php
+                  echo 'Match number ' . $match_number;
+                ?>
+              </p>
+              <p>
+                <?php
+                  echo $message;
+                ?>
+              </p>
+              <?php
+                  }
+                }
+              ?>
+            </div>
             <div class="results-box">
               <p>
                 <span>
-                  RESULTS BOX HERE:
+                  Number of wins:
                 </span>
+                you won
+                <?php
+                  echo $counter . ' times.';
+                ?>
               </p>
             </div>
           </div>
